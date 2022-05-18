@@ -29,6 +29,13 @@ async function run() {
             const task = await taskCollection.insertOne(newTask);
             res.send(task);
         });
+        //task DELETE API
+        app.delete('/task/:id', async (req, res)=>{
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)};
+            const task = await taskCollection.deleteOne(query);
+            res.send(task);
+        });
     }
     finally{
 
