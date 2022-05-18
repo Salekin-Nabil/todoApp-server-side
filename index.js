@@ -17,6 +17,12 @@ async function run() {
         await client.connect();
         const productCollection = client.db('todoList').collection('task');
 
+        //Products GET API All Items
+        app.get('/task', async (req, res)=>{
+            const cursor = productCollection.find({});
+            const products = await cursor.toArray();
+            res.send(products);
+        });
     }
     finally{
 
